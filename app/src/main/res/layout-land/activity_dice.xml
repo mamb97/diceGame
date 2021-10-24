@@ -85,8 +85,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="5dp"
-                android:ellipsize="marquee"
-                android:marqueeRepeatLimit="marquee_forever"
                 android:text="@string/notification_bar"
                 android:textColor="@color/black_label_text"
                 android:textSize="20sp"
@@ -101,11 +99,15 @@
             android:layout_weight="3"
             android:orientation="vertical">
             <LinearLayout
-                android:id="@+id/row31"
-                android:visibility="invisible"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/row31"
+                    android:visibility="invisible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
                     <ProgressBar
                         android:id="@+id/row31_pb"
                         android:layout_width="wrap_content"
@@ -132,73 +134,78 @@
                         android:textColor="@color/black_label_text"
                         android:textSize="15sp"
                         android:padding="5dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/row32"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:orientation="horizontal">
-                <ProgressBar
-                    android:id="@+id/row32_pb"
-                    android:layout_width="wrap_content"
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/row32"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:indeterminateTint="@color/black"
-                    android:indeterminateBehavior="cycle"
-                    android:textColor="@color/black"
-                    android:padding="5dp"/>
-
-                <TextView
-                    android:id="@+id/row32_tv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/row32_tv1_label"
-                    android:textColor="@color/black_label_text"
-                    android:textSize="15sp"
-                    android:padding="5dp"/>
-
-                <TextView
-                    android:id="@+id/row32_tv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:textColor="@color/black_label_text"
-                    android:textSize="15sp"
-                    android:padding="5dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/row33"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:orientation="horizontal">
-                <ProgressBar
-                    android:id="@+id/row33_pb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:indeterminateTint="@color/black"
-                    android:indeterminateBehavior="cycle"
                     android:visibility="invisible"
-                    android:textColor="@color/black"
-                    android:padding="5dp"/>
-                <TextView
-                    android:id="@+id/row33_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/row33_tv_label"
-                    android:textColor="@color/black_label_text"
-                    android:textSize="15sp"/>
-                <Spinner
-                    android:id="@+id/row33_sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black_label_text"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:orientation="horizontal">
+                    <ProgressBar
+                        android:id="@+id/row32_pb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="@color/black"
+                        android:indeterminateBehavior="cycle"
+                        android:textColor="@color/black"
+                        android:padding="5dp"/>
+
+                    <TextView
+                        android:id="@+id/row32_tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/row32_tv1_label"
+                        android:textColor="@color/black_label_text"
+                        android:textSize="15sp"
+                        android:padding="5dp"/>
+
+                    <TextView
+                        android:id="@+id/row32_tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:textColor="@color/black_label_text"
+                        android:textSize="15sp"
+                        android:padding="5dp"/>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/row33"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:orientation="horizontal">
+                    <ProgressBar
+                        android:id="@+id/row33_pb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="@color/black"
+                        android:indeterminateBehavior="cycle"
+                        android:visibility="invisible"
+                        android:textColor="@color/black"
+                        android:padding="5dp"/>
+                    <TextView
+                        android:id="@+id/row33_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/row33_tv_label"
+                        android:textColor="@color/black_label_text"
+                        android:textSize="15sp"/>
+                    <Spinner
+                        android:id="@+id/row33_sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_label_text"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                </LinearLayout>
+                <LinearLayout
                 android:id="@+id/row34"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -236,6 +243,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textSize="15sp"
                     android:padding="5dp"/>
+            </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
