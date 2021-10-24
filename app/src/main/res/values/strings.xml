@@ -22,4 +22,23 @@
     <string name="human_score_text_label">Player Score:</string>
     <string name="human_avatar_name_label">Avatar: Player</string>
     <string name="human_start_score">0</string>
+    <string name="notification_bar">Starting the game &#8230;</string>
+    <string name="notification_bar_ai1_message">Rolling dice - AI Turn 1</string>
+    <string name="notification_bar_ai2_message">Rolling dice - AI Turn 2</string>
+    <string name="notification_bar_h1_message">Human Turn 1</string>
+    <string name="notification_bar_h2_message">Human Turn 2</string>
+    <string name="row31_tv1_label">AI Dice Turn 1 Value: </string>
+    <string name="row32_tv1_label">AI Dice Turn 2 Value: </string>
+    <string name="row33_tv_label">Human Turn 1: </string>
+    <string name="row34_tv1_label">Human Turn 2: </string>
+    <string name="row34_button_text">Roll Dice</string>
+    <string name="notification_bar_result_message">Computing Results &#8230;</string>
+    <string-array name="dice_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
 </resources>

@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiceGame">
         <activity
-            android:name=".ResultActivity"
+            android:name=".DiceActivity"
             android:exported="false" />
         <activity
-            android:name=".GameActivity"
+            android:name=".ResultActivity"
             android:exported="false" />
         <activity
             android:name=".PlayActivity"
@@ -24,6 +24,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -14,7 +14,7 @@ public class PlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play);
         final Button button = findViewById(R.id.playButton);
         button.setOnClickListener(v -> {
-            Intent intent = new Intent(PlayActivity.this, GameActivity.class);
+            Intent intent = new Intent(PlayActivity.this, DiceActivity.class);
             startActivity(intent);
             finish();
         });

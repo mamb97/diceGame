@@ -30,7 +30,7 @@ public class ResultActivity extends AppCompatActivity {
     private void resetButtonListener() {
         final Button resetButton = findViewById(R.id.resetButton);
         resetButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ResultActivity.this, GameActivity.class);
+            Intent intent = new Intent(ResultActivity.this, DiceActivity.class);
             startActivity(intent);
             finish();
         });

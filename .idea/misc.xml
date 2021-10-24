@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_game.xml" value="0.17395833333333333" />
+        <entry key="../../../Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_item.xml" value="0.1194078947368421" />
+        <entry key="app/src/main/res/layout/activity_dice.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_dice_game_roll.xml" value="0.25703125" />
+        <entry key="app/src/main/res/layout/activity_game.xml" value="0.10137228862328464" />
         <entry key="app/src/main/res/layout/activity_intro.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/activity_play.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/activity_result.xml" value="0.1890625" />
+        <entry key="app/src/main/res/layout/content_dice_game_roll.xml" value="0.25703125" />
       </map>
     </option>
   </component>
