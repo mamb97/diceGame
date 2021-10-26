@@ -6,6 +6,7 @@
     app:flow_verticalStyle="spread"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
+    android:background="@drawable/intro_activity_gradient"
     tools:context=".DiceActivity">
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ai_score_text_label"
-                    android:textColor="@color/black_label_text"
+                    android:textColor="@color/white"
                     android:textSize="15sp"
                     android:padding="5dp"
                     app:layout_constraintRight_toLeftOf="@id/aiScore"
@@ -43,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ai_start_score"
-                    android:textColor="@color/black_label_text"
+                    android:textColor="@color/white"
                     android:textSize="15sp"
                     android:padding="5dp"
                     app:layout_constraintTop_toTopOf="parent"
@@ -54,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/human_score_text_label"
-                    android:textColor="@color/black_label_text"
+                    android:textColor="@color/white"
                     android:textSize="15sp"
                     android:padding="5dp"
                     app:layout_constraintTop_toTopOf="parent"
@@ -65,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/human_start_score"
-                    android:textColor="@color/black_label_text"
+                    android:textColor="@color/white"
                     android:textSize="15sp"
                     android:padding="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +87,7 @@
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/notification_bar"
-                android:textColor="@color/black_label_text"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -112,7 +113,7 @@
                         android:id="@+id/row31_pb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:indeterminateTint="@color/black"
+                        android:indeterminateTint="@color/white"
                         android:indeterminateBehavior="cycle"
                         android:textColor="@color/black"
                         android:padding="5dp"/>
@@ -122,7 +123,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/row31_tv1_label"
-                        android:textColor="@color/black_label_text"
+                        android:textColor="@color/white"
                         android:textSize="15sp"
                         android:padding="5dp"/>
 
@@ -131,7 +132,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:textColor="@color/black_label_text"
+                        android:textColor="@color/white"
                         android:textSize="15sp"
                         android:padding="5dp"/>
                 </LinearLayout>
@@ -155,7 +156,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/row32_tv1_label"
-                        android:textColor="@color/black_label_text"
+                        android:textColor="@color/white"
                         android:textSize="15sp"
                         android:padding="5dp"/>
 
@@ -164,7 +165,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:textColor="@color/black_label_text"
+                        android:textColor="@color/white"
                         android:textSize="15sp"
                         android:padding="5dp"/>
                 </LinearLayout>
