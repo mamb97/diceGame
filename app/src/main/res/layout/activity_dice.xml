@@ -133,6 +133,12 @@
                         android:textColor="@color/white"
                         android:textSize="15sp"
                         android:padding="5dp"/>
+                <ImageView
+                    android:id="@+id/dice_image1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/dice1">
+                </ImageView>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/row32"
@@ -166,6 +172,12 @@
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     android:padding="5dp"/>
+                <ImageView
+                    android:id="@+id/dice_image2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/dice1">
+                </ImageView>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/row33"
@@ -237,6 +249,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textSize="15sp"
                     android:padding="5dp"/>
+                <ImageView
+                    android:id="@+id/dice_image3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/dice1">
+                </ImageView>
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

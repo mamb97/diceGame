@@ -5,17 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class DiceActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    ImageView dice_image1;
+    Random random = new Random();
     Timer timer;
     Integer h_dice1, h_dice2, a_dice1, a_dice2 = 0;
 
@@ -23,10 +28,59 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dice);
+
+
+        dice_image1 = findViewById(R.id.dice_image1);
+
+
+        dice_image1.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View view) {
+                rotateDice(1);
+            }
+
+        });
+
+
+
         setSpinnerValues();
         timer = new Timer();
         this.triggerDiceStep();
         rollDiceButtonListener();
+    }
+
+    private void rotateDice(Integer i) {
+        Animation anim = AnimationUtils.loadAnimation(this,R.anim.rotate);
+        dice_image1.startAnimation(anim);
+
+        switch(i) {
+            case 1:
+                dice_image1.setImageResource(R.drawable.dice1);
+                break;
+
+            case 2:
+                dice_image1.setImageResource(R.drawable.dice2);
+                break;
+
+            case 3:
+                dice_image1.setImageResource(R.drawable.dice3);
+                break;
+
+            case 4:
+                dice_image1.setImageResource(R.drawable.dice4);
+                break;
+
+
+            case 5:
+                dice_image1.setImageResource(R.drawable.dice5);
+                break;
+
+
+            case 6:
+                dice_image1.setImageResource(R.drawable.dice6);
+                break;
+        }
     }
 
     private void setSpinnerValues() {
@@ -88,13 +142,19 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 try {
                     synchronized (this) {
+                        dice_image1 = findViewById(R.id.dice_image1);
                         a_dice1 = getRandom();
+
                         initializeStep(R.id.notificationBar, R.string.notification_bar_ai1_message, R.id.row31,
                                 R.id.row31_pb, R.id.row31_tv2, a_dice1, Boolean.TRUE);
+                        rotateDice(a_dice1);
                         setComputedScore(R.id.aiScore, a_dice1, 0);
+
+                        dice_image1 = findViewById(R.id.dice_image2);
                         a_dice2 = getRandom();
                         initializeStep(R.id.notificationBar, R.string.notification_bar_ai2_message, R.id.row32,
                                 R.id.row32_pb, R.id.row32_tv2, a_dice2, Boolean.TRUE);
+                        rotateDice(a_dice2);
                         setComputedScore(R.id.aiScore, a_dice1, a_dice2);
                         initializeStep(R.id.notificationBar, R.string.notification_bar_h1_message, R.id.row33,
                                 -1, -1, -1, Boolean.FALSE);
@@ -161,7 +221,7 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private Integer getRandom(){
-        return 1;
+        return random.nextInt(5)+1;
     }
 
     private void onGameWin(){
@@ -203,9 +263,11 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
                             synchronized (this) {
                                 DiceActivity.this.removeView(R.id.row34_bt);
                                 DiceActivity.this.enableView(R.id.row34_tv1);
+                                dice_image1 = findViewById(R.id.dice_image3);
                                 h_dice2 = getRandom();
                                 setTextViewValue(R.id.row34_tv2, String.valueOf(h_dice2));
                                 setComputedScore(R.id.humanScore1, h_dice1, h_dice2);
+                                rotateDice(h_dice2);
                                 setTextViewValue(R.id.notificationBar,
                                         getString(R.string.notification_bar_result_message));
                                 Thread.sleep(1000);
@@ -238,5 +300,9 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         }, 0);
     }
+
+
+
+
 
 }
