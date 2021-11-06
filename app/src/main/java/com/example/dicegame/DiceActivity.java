@@ -2,14 +2,19 @@ package com.example.dicegame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,6 +28,10 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
     Random random = new Random();
     Timer timer;
     Integer h_dice1, h_dice2, a_dice1, a_dice2 = 0;
+    /**
+     * Array image for GridView
+     */
+    Integer[] DicesImg = {R.drawable.dice1v2,R.drawable.dice2v2,R.drawable.dice3v2,R.drawable.dice4v2,R.drawable.dice5v2,R.drawable.dice6v2};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +51,29 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
 
         });
 
+        /**
+         * Event Grid image click
+         *
+         **/
+        GridView grid = (GridView)findViewById(R.id.gridItemDice);
+        //Call ImageAdapter to generate grid image
+        grid.setAdapter(new ImageAdapter(this));
+        //Trigger event Image click
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                //Clear background color of image
+                for(int imgIndex =0 ;imgIndex < DicesImg.length;imgIndex++){
+                    grid.getChildAt(imgIndex).setBackgroundColor(Color.TRANSPARENT);
+                }
+                View childItem =  grid.getChildAt(position);
+                //Change background when select image at position
+                childItem.setBackgroundColor(Color.WHITE);
 
+                //NOTES: SWITCH EVENTS FROM DROPDOWN TO HERE
+            }
+        });
+        /**End Event Grid Image click**/
 
         setSpinnerValues();
         timer = new Timer();
@@ -56,29 +87,29 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
 
         switch(i) {
             case 1:
-                dice_image1.setImageResource(R.drawable.dice1);
+                dice_image1.setImageResource(R.drawable.dice1v2);
                 break;
 
             case 2:
-                dice_image1.setImageResource(R.drawable.dice2);
+                dice_image1.setImageResource(R.drawable.dice2v2);
                 break;
 
             case 3:
-                dice_image1.setImageResource(R.drawable.dice3);
+                dice_image1.setImageResource(R.drawable.dice3v2);
                 break;
 
             case 4:
-                dice_image1.setImageResource(R.drawable.dice4);
+                dice_image1.setImageResource(R.drawable.dice4v2);
                 break;
 
 
             case 5:
-                dice_image1.setImageResource(R.drawable.dice5);
+                dice_image1.setImageResource(R.drawable.dice5v2);
                 break;
 
 
             case 6:
-                dice_image1.setImageResource(R.drawable.dice6);
+                dice_image1.setImageResource(R.drawable.dice6v2);
                 break;
         }
     }
@@ -301,7 +332,53 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
         }, 0);
     }
 
+    /**
+     * Image Adapter for GridView
+     */
+    public class ImageAdapter extends BaseAdapter {
+        private Context context;
+        public ImageAdapter(Context c){
+            context = c;
+        }
+        @Override
+        public int getCount() {
+            return DicesImg.length;
+        }
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
 
+        /**
+         * Add image in each cell
+         * @param position an integer of position image in gridview
+         * @param convertView
+         * @param parent
+         * @return ImageView
+         */
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent)
+        {
+            ImageView imageView;
+            if (convertView == null) {
+                imageView = new ImageView(this.context);
+                //Scale image by width 200px , height 200px
+                imageView.setLayoutParams(new GridView.LayoutParams(200, 200));
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+            } else {
+                imageView = (ImageView) convertView;
+            }
+
+            imageView.setImageResource(DicesImg[position]);
+            return imageView;
+        }
+
+    }
 
 
 
