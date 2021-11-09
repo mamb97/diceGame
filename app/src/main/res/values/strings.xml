@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">diceGame</string>
+    <string name="class_name">CSPC 544</string>
+    <string name="professor_name">Prof. Chang-Hyun Jo</string>
+    <string name="team_number">Created by team 4</string>
+    <string name="app_authors">Eswara, Madhurima, Trieu, Mayuri, Merlina</string>
+    <string name="game_name">Dice Game</string>
+    <string name="dice_logo_description">Dice Logo Description</string>
+    <string name="play_button_text">Play</string>
+    <string name="reset_button_text">Reset</string>
+    <string name="exit_button_text">Exit</string>
+    <string name="game_win_title">Congratulations!</string>
+    <string name="game_not_win_title">Oops!</string>
+    <string name="game_win_description">You win</string>
+    <string name="game_lost_description">You lost</string>
+    <string name="game_tie_description">Game tie. Play again</string>
+    <string name="ai_avatar_image_description">AI Avatar Image</string>
+    <string name="ai_score_text_label">AI Score:</string>
+    <string name="ai_avatar_name_label">Avatar: AI</string>
+    <string name="ai_start_score">0</string>
+    <string name="human_avatar_image_description">Player Avatar Image</string>
+    <string name="human_score_text_label">Player Score:</string>
+    <string name="human_avatar_name_label">Avatar: Player</string>
+    <string name="human_start_score">0</string>
+    <string name="notification_bar">Starting the game &#8230;</string>
+    <string name="notification_bar_ai1_message">Rolling dice - AI Turn 1</string>
+    <string name="notification_bar_ai2_message">Rolling dice - AI Turn 2</string>
+    <string name="notification_bar_h1_message">Human Turn 1</string>
+    <string name="notification_bar_h2_message">Human Turn 2</string>
+    <string name="row31_tv1_label">AI Dice Turn 1 Value: </string>
+    <string name="row32_tv1_label">AI Dice Turn 2 Value: </string>
+    <string name="row33_tv_label">Human Turn 1: </string>
+    <string name="row34_tv1_label">Human Turn 2: </string>
+    <string name="row34_button_text">Roll Dice</string>
+    <string name="notification_bar_result_message">Computing Results &#8230;</string>
+    <string-array name="dice_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+</resources>
