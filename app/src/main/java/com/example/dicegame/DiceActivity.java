@@ -255,28 +255,31 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
         return random.nextInt(5)+1;
     }
 
-    private void onGameWin(){
+    private void onGameWin(Integer ai_score, Integer human_score){
         Integer title = R.string.game_win_title;
         Integer desc = R.string.game_win_description;
-        this.displayResult(title, desc);
+        this.displayResult(title, desc, ai_score, human_score);
     }
-    private void onGameLose(){
+    private void onGameLose(Integer ai_score, Integer human_score){
         Integer title = R.string.game_not_win_title;
         Integer desc = R.string.game_lost_description;
-        this.displayResult(title, desc);
+        this.displayResult(title, desc, ai_score, human_score);
     }
-    private void onGameTie(){
+    private void onGameTie(Integer ai_score, Integer human_score){
         Integer title = R.string.game_not_win_title;
         Integer desc = R.string.game_tie_description;
-        this.displayResult(title, desc);
+        this.displayResult(title, desc, ai_score, human_score);
     }
 
-    private void displayResult(Integer resultTitle, Integer resultDescription){
+    private void displayResult(Integer resultTitle, Integer resultDescription,
+                               Integer ai_score, Integer human_score){
         Intent intent = new Intent(this, ResultActivity.class);
         String resultTitleMessage = getString(resultTitle);
         intent.putExtra("resultTitle", resultTitleMessage);
         String resultDescriptionMessage = getString(resultDescription);
         intent.putExtra("resultDescription", resultDescriptionMessage);
+        intent.putExtra("aiScore", ai_score);
+        intent.putExtra("humanScore", human_score);
         startActivity(intent);
         finish();
     }
@@ -323,11 +326,11 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
                 Integer ai_score = getComputedScore(a_dice1, a_dice2);
                 Integer human_score = getComputedScore(h_dice1, h_dice2);
                 if(human_score > ai_score)
-                    DiceActivity.this.onGameWin();
+                    DiceActivity.this.onGameWin(ai_score, human_score);
                 else if(human_score.equals(ai_score))
-                    DiceActivity.this.onGameTie();
+                    DiceActivity.this.onGameTie(ai_score, human_score);
                 else
-                    DiceActivity.this.onGameLose();
+                    DiceActivity.this.onGameLose(ai_score, human_score);
             }
         }, 0);
     }
