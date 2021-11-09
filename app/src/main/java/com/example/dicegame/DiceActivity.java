@@ -301,7 +301,7 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
                                 rotateDice(h_dice2);
                                 setTextViewValue(R.id.notificationBar,
                                         getString(R.string.notification_bar_result_message));
-                                Thread.sleep(1000);
+                                Thread.sleep(3000);
                                 computeResult();
                             }
                         } catch (Exception e) {
