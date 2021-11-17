@@ -2,202 +2,142 @@ package com.example.dicegame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.GridView;
+import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class DiceActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class DiceActivity extends AppCompatActivity {
 
-    ImageView dice_image1;
     Random random = new Random();
     Timer timer;
     Integer h_dice1, h_dice2, a_dice1, a_dice2 = 0;
-    /**
-     * Array image for GridView
-     */
-    Integer[] DicesImg = {R.drawable.dice1v2,R.drawable.dice2v2,R.drawable.dice3v2,R.drawable.dice4v2,R.drawable.dice5v2,R.drawable.dice6v2};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dice);
-
-
-        dice_image1 = findViewById(R.id.dice_image1);
-
-
-        dice_image1.setOnClickListener(new View.OnClickListener() {
-            @Override
-
-            public void onClick(View view) {
-                rotateDice(1);
-            }
-
-        });
-
-        /**
-         * Event Grid image click
-         *
-         **/
-        GridView grid = (GridView)findViewById(R.id.gridItemDice);
-        //Call ImageAdapter to generate grid image
-        grid.setAdapter(new ImageAdapter(this));
-        //Trigger event Image click
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                //Clear background color of image
-                for(int imgIndex =0 ;imgIndex < DicesImg.length;imgIndex++){
-                    grid.getChildAt(imgIndex).setBackgroundColor(Color.TRANSPARENT);
-                }
-                View childItem =  grid.getChildAt(position);
-                //Change background when select image at position
-                childItem.setBackgroundColor(Color.WHITE);
-
-                //NOTES: SWITCH EVENTS FROM DROPDOWN TO HERE
-            }
-        });
-        /**End Event Grid Image click**/
-
-        setSpinnerValues();
         timer = new Timer();
         this.triggerDiceStep();
-        rollDiceButtonListener();
+        this.gridViewListener();
+        this.rollDiceButtonListener();
     }
 
-    private void rotateDice(Integer i) {
-        Animation anim = AnimationUtils.loadAnimation(this,R.anim.rotate);
-        dice_image1.startAnimation(anim);
-
-        switch(i) {
-            case 1:
-                dice_image1.setImageResource(R.drawable.dice1v2);
-                break;
-
-            case 2:
-                dice_image1.setImageResource(R.drawable.dice2v2);
-                break;
-
-            case 3:
-                dice_image1.setImageResource(R.drawable.dice3v2);
-                break;
-
-            case 4:
-                dice_image1.setImageResource(R.drawable.dice4v2);
-                break;
-
-
-            case 5:
-                dice_image1.setImageResource(R.drawable.dice5v2);
-                break;
-
-
-            case 6:
-                dice_image1.setImageResource(R.drawable.dice6v2);
-                break;
-        }
-    }
-
-    private void setSpinnerValues() {
-        //Setting up Spinner Values.
-        String[] diceValues = { "0", "1", "2", "3", "4", "5", "6"};
-        Spinner spin = findViewById(R.id.row33_sp);
-        spin.setOnItemSelectedListener(this);
-
-        // Create the instance of ArrayAdapter
-        // having the list of courses
-        ArrayAdapter<CharSequence> ad  = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, diceValues);
-
-        // set simple layout resource file
-        // for each item of spinner
-        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Set the ArrayAdapter (ad) data on the
-        // Spinner which binds data to spinner
-        spin.setAdapter(ad);
-    }
-
-    public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id)
-    {
-        h_dice1 = position;
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    if (position > 0) {
-                        synchronized (this) {
-                            initializeStep(R.id.notificationBar, R.string.notification_bar_h2_message,
-                                    R.id.row34, -1, -1, -1, Boolean.FALSE);
-                            setComputedScore(R.id.humanScore1, h_dice1, 0);
-
-                        }
-                    }
-                    else{
-                        DiceActivity.this.disableView(R.id.row34);
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-
-        }, 0);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> arg0)
-    {
-        h_dice1 = 0;
-    }
-
+    // This method triggers the first two AI dice rolls and computes the ai score. Finally enables the Grid View for first human selection.
     private void triggerDiceStep() {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-
-                try {
-                    synchronized (this) {
-                        dice_image1 = findViewById(R.id.dice_image1);
-                        a_dice1 = getRandom();
-
-                        initializeStep(R.id.notificationBar, R.string.notification_bar_ai1_message, R.id.row31,
-                                R.id.row31_pb, R.id.row31_tv2, a_dice1, Boolean.TRUE);
-                        rotateDice(a_dice1);
-                        setComputedScore(R.id.aiScore, a_dice1, 0);
-
-                        dice_image1 = findViewById(R.id.dice_image2);
-                        a_dice2 = getRandom();
-                        initializeStep(R.id.notificationBar, R.string.notification_bar_ai2_message, R.id.row32,
-                                R.id.row32_pb, R.id.row32_tv2, a_dice2, Boolean.TRUE);
-                        rotateDice(a_dice2);
-                        setComputedScore(R.id.aiScore, a_dice1, a_dice2);
-                        initializeStep(R.id.notificationBar, R.string.notification_bar_h1_message, R.id.row33,
-                                -1, -1, -1, Boolean.FALSE);
-
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            try {
+                synchronized (this) {
+                    a_dice1 = getRandom();
+                    initializeStep(R.id.notificationBar, R.string.notification_bar_ai1_message, R.id.row32,
+                            R.id.row32_pb, Boolean.TRUE);
+                    rotateDice(a_dice1, R.id.row32_dice_image);
+                    setComputedScore(R.id.aiScore, a_dice1, 0);
+                    a_dice2 = getRandom();
+                    initializeStep(R.id.notificationBar, R.string.notification_bar_ai2_message, R.id.row33,
+                            R.id.row33_pb, Boolean.TRUE);
+                    rotateDice(a_dice2,  R.id.row33_dice_image);
+                    setComputedScore(R.id.aiScore, a_dice1, a_dice2);
+                    initializeStep(R.id.notificationBar, R.string.notification_bar_h1_message, R.id.diceGridLayout,
+                                -1, Boolean.FALSE);
                 }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             }
 
 
         }, 0);
+    }
+
+    // Displays the dice images for human selection. On click of any image, the grid disappears and enables the next button view.
+    private void gridViewListener() {
+        GridLayout grid = findViewById(R.id.diceGridLayout);
+        ImageView row52_dice_image = findViewById(R.id.row52_dice_image);
+        for (int i= 0; i < 6; i++){
+            ImageView container = (ImageView) grid.getChildAt(i);
+            int finalI = i;
+            container.setOnClickListener(view -> {
+                removeView(R.id.diceGridLayout);
+                h_dice1 = finalI + 1;
+                row52_dice_image.setImageResource(getDiceImageId(h_dice1));
+                setComputedScore(R.id.humanScore1, h_dice1, 0);
+                try {
+                    initializeStep(R.id.notificationBar, R.string.notification_bar_h2_message, R.id.row5,
+                            -1, Boolean.FALSE);
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+    }
+
+    // Button listener to invoke the last dice roll, and compute results.
+    public void rollDiceButtonListener() {
+        ImageButton row53_bt = findViewById(R.id.row53_bt);
+        row53_bt.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+
+                        try {
+                            synchronized (this) {
+                                h_dice2 = getRandom();
+                                DiceActivity.this.removeView(R.id.row53_bt);
+                                rotateDice(h_dice2, R.id.row53_dice_image);
+                                DiceActivity.this.enableView(R.id.row53_dice_image);
+                                setComputedScore(R.id.humanScore1, h_dice1, h_dice2);
+                                setTextViewValue(R.id.notificationBar,
+                                        getString(R.string.notification_bar_result_message));
+                                Thread.sleep(3000);
+                                computeResult();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, 0);
+            }
+        });
+    }
+
+    //Utility method to return the diceImage based on the input number
+    private Integer getDiceImageId(Integer number){
+        switch(number) {
+            case 1:
+                return R.drawable.dice1v2;
+            case 2:
+                return R.drawable.dice2v2;
+            case 3:
+                return R.drawable.dice3v2;
+            case 4:
+                return R.drawable.dice4v2;
+            case 5:
+                return R.drawable.dice5v2;
+            case 6:
+                return R.drawable.dice6v2;
+        }
+        return -1;
+    }
+
+    // This method aptly sets the dice phase for a given number at a provided view
+    private void rotateDice(Integer i, Integer viewId) {
+        Animation anim = AnimationUtils.loadAnimation(this,R.anim.rotate);
+        ImageView dice_image1 = findViewById(viewId);
+        dice_image1.startAnimation(anim);
+        dice_image1.setImageResource(getDiceImageId(i));
     }
 
     private void setTextViewValue(Integer viewID, String viewMsg){
@@ -214,8 +154,9 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
         this.setTextViewValue(scoreViewID, String.valueOf(getComputedScore(score1, score2)));
     }
 
+    // This is a utility method to update notification bar messages and trigger sleep between operations if the enable_wait flag is True.
     private void initializeStep(Integer nb, Integer nb_msg, Integer ll_id, Integer pb_id,
-                           Integer tv_id, Integer dice_val, Boolean enable_wait)
+                                Boolean enable_wait)
             throws InterruptedException {
         if(nb>-1) {
             this.setTextViewValue(nb, getString(nb_msg));
@@ -225,10 +166,7 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
             Thread.sleep(3000);
         }
         if(pb_id>-1) {
-            this.runOnUiThread(() -> {
-                DiceActivity.this.disableView(pb_id);
-                setTextViewValue(tv_id, String.valueOf(dice_val));
-            });
+            this.runOnUiThread(() -> DiceActivity.this.disableView(pb_id));
         }
     }
 
@@ -271,6 +209,7 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
         this.displayResult(title, desc, ai_score, human_score);
     }
 
+    // Utility method to start the next intent to display the final results to the user.
     private void displayResult(Integer resultTitle, Integer resultDescription,
                                Integer ai_score, Integer human_score){
         Intent intent = new Intent(this, ResultActivity.class);
@@ -284,40 +223,7 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
         finish();
     }
 
-    public void rollDiceButtonListener() {
-        Button button = findViewById(R.id.row34_bt);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                h_dice2 = getRandom();
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-
-                        try {
-                            synchronized (this) {
-                                DiceActivity.this.removeView(R.id.row34_bt);
-                                DiceActivity.this.enableView(R.id.row34_tv1);
-                                dice_image1 = findViewById(R.id.dice_image3);
-                                h_dice2 = getRandom();
-                                setTextViewValue(R.id.row34_tv2, String.valueOf(h_dice2));
-                                setComputedScore(R.id.humanScore1, h_dice1, h_dice2);
-                                rotateDice(h_dice2);
-                                setTextViewValue(R.id.notificationBar,
-                                        getString(R.string.notification_bar_result_message));
-                                Thread.sleep(3000);
-                                computeResult();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-
-                }, 0);
-            }
-        });
-    }
-
+    // This method is triggered after the rolldice method. It computes the results of the both the players to identify the game status.
     private void computeResult() {
         timer.schedule(new TimerTask() {
 
@@ -334,55 +240,5 @@ public class DiceActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         }, 0);
     }
-
-    /**
-     * Image Adapter for GridView
-     */
-    public class ImageAdapter extends BaseAdapter {
-        private Context context;
-        public ImageAdapter(Context c){
-            context = c;
-        }
-        @Override
-        public int getCount() {
-            return DicesImg.length;
-        }
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        /**
-         * Add image in each cell
-         * @param position an integer of position image in gridview
-         * @param convertView
-         * @param parent
-         * @return ImageView
-         */
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent)
-        {
-            ImageView imageView;
-            if (convertView == null) {
-                imageView = new ImageView(this.context);
-                //Scale image by width 200px , height 200px
-                imageView.setLayoutParams(new GridView.LayoutParams(200, 200));
-                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
-            } else {
-                imageView = (ImageView) convertView;
-            }
-
-            imageView.setImageResource(DicesImg[position]);
-            return imageView;
-        }
-
-    }
-
-
 
 }
