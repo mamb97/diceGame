@@ -11,14 +11,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="5"
+        android:weightSum="6"
         app:flow_verticalStyle="packed"
         android:orientation="vertical">
         <LinearLayout
             android:id="@+id/row1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
 
             android:orientation="horizontal">
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,7 +79,7 @@
             android:id="@+id/row2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="0.5">
             <TextView
                 android:id="@+id/notificationBar"
                 android:layout_width="match_parent"
@@ -95,35 +95,39 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/row3"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_height="0px"
+            android:layout_weight="5"
             android:orientation="vertical">
-            <LinearLayout
-                android:id="@+id/row31"
-                android:visibility="invisible"
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                    <ProgressBar
-                        android:id="@+id/row31_pb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:indeterminateTint="@color/black"
-                        android:indeterminateBehavior="cycle"
-                        android:textColor="@color/black"
-                        android:padding="5dp"/>
+                android:columnCount="3"
+                android:rowCount="1"
+                android:layout_margin="10px"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AI:"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:padding="5dp"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1.5"
+                    />
+                <RelativeLayout
+                    android:id="@+id/row31"
+                    android:visibility="invisible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    >
 
-                    <TextView
-                        android:id="@+id/row31_tv1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/row31_tv1_label"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:padding="5dp"/>
 
                     <TextView
                         android:id="@+id/row31_tv2"
@@ -132,59 +136,95 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         android:textColor="@color/white"
                         android:textSize="15sp"
+                        android:layout_centerHorizontal="true"
+
                         android:padding="5dp"/>
-                <ImageView
-                    android:id="@+id/dice_image1"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/dice1">
-                </ImageView>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/row32"
-                android:layout_width="match_parent"
+
+                    <ImageView
+                        android:id="@+id/dice_image1"
+                        android:layout_width="200px"
+                        android:layout_height="200px"
+                        android:layout_centerHorizontal="true"
+
+                        android:src="@drawable/dice1v2"></ImageView>
+                    <ProgressBar
+                        android:id="@+id/row31_pb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="@color/black"
+                        android:indeterminateBehavior="cycle"
+                        android:textColor="@color/black"
+                        android:padding="5dp"
+                        android:layout_centerHorizontal="true"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/row32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_column="2"
+                    android:layout_columnWeight="1"
+                    >
+
+                    <TextView
+                        android:id="@+id/row32_tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:layout_centerHorizontal="true"
+                        android:padding="5dp"/>
+
+                    <ImageView
+                        android:id="@+id/dice_image2"
+                        android:layout_width="200px"
+                        android:layout_height="200px"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/dice1v2"></ImageView>
+                    <ProgressBar
+                        android:id="@+id/row32_pb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="@color/black"
+                        android:indeterminateBehavior="cycle"
+                        android:textColor="@color/black"
+                        android:padding="5dp"
+                        android:layout_centerHorizontal="true"
+                        />
+                </RelativeLayout>
+            </GridLayout>
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:orientation="horizontal">
-                <ProgressBar
-                    android:id="@+id/row32_pb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:indeterminateTint="@color/black"
-                    android:indeterminateBehavior="cycle"
-                    android:textColor="@color/black"
-                    android:padding="5dp"/>
-
-                <TextView
-                    android:id="@+id/row32_tv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/row32_tv1_label"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
-                    android:padding="5dp"/>
-
-                <TextView
-                    android:id="@+id/row32_tv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
-                    android:padding="5dp"/>
-                <ImageView
-                    android:id="@+id/dice_image2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/dice1">
-                </ImageView>
-            </LinearLayout>
+                android:text="Human Turn: "
+                android:textColor="@color/white"
+                android:textSize="15sp"/>
+            <GridView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_margin="10dp"
+                android:columnWidth="100dp"
+                android:horizontalSpacing="0dp"
+                android:verticalSpacing="15dp"
+                android:numColumns="3"
+                android:id="@+id/gridItemDice"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
             <LinearLayout
                 android:id="@+id/row33"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="invisible"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
                 <ProgressBar
                     android:id="@+id/row33_pb"
                     android:layout_width="wrap_content"
@@ -216,46 +256,85 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="invisible"
-                android:orientation="horizontal">
-                <ProgressBar
-                    android:id="@+id/row34_pb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:indeterminateTint="@color/black"
-                    android:indeterminateBehavior="cycle"
-                    android:visibility="invisible"
-                    android:textColor="@color/black"
-                    android:padding="5dp"/>
-                <TextView
-                    android:id="@+id/row34_tv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/row34_tv1_label"
-                    android:visibility="invisible"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"/>
-                <Button
-                    android:id="@+id/row34_bt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/row34_button_text"
-                    android:textColor="@color/white"
-                    android:padding="5dp"/>
-                <TextView
-                    android:id="@+id/row34_tv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:textSize="15sp"
-                    android:padding="5dp"/>
-                <ImageView
-                    android:id="@+id/dice_image3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/dice1">
-                </ImageView>
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
 
+                >
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:rowCount="1"
+                    android:layout_margin="10px"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_columnWeight="2"
+                        >
+                        <TextView
+                            android:id="@+id/row34_tv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/row34_tv1_label"
+                            android:visibility="invisible"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:layout_column="0"
+                            android:layout_columnWeight="1"
+                            />
+                        <TextView
+                            android:id="@+id/row34_tv2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:textSize="15sp"
+                            android:padding="5dp"
+                            android:layout_column="1"
+                            />
+                        <Button
+                            android:id="@+id/row34_bt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/row34_button_text"
+                            android:textColor="@color/white"
+                            android:padding="5dp"
+                            android:layout_column="1"
+
+                            />
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_columnWeight="1"
+                        >
+                        <ImageView
+                            android:id="@+id/dice_image3"
+                            android:layout_width="200px"
+                            android:layout_height="200px"
+                            android:layout_marginLeft="20dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/dice1v2">
+                        </ImageView>
+                        <ProgressBar
+                            android:id="@+id/row34_pb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:indeterminateTint="@color/black"
+                            android:indeterminateBehavior="cycle"
+                            android:visibility="invisible"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:layout_centerHorizontal="true"
+                            />
+                    </RelativeLayout>
+                </GridLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
