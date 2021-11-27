@@ -5,14 +5,24 @@
     android:gravity="center"
     android:background="@drawable/intro_activity_gradient"
     >
+
+
+    <Button
+        android:id="@+id/helpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-90dp"
+        android:text="Help"
+        android:onClick="sendMessage"/>
+
+
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/playButton"
         android:src="@drawable/main_logo"
-        android:layout_centerHorizontal="true"
-
-        />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/playButton"
