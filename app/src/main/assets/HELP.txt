@@ -1,0 +1,18 @@
+Welcome to the Dice Game created by Trieu, Merlina, Mayuri, Madhurima and Eswara.
+
+Here are the game rules:
+
+1. Game is played by two players : Computer and Human
+
+2. Computer (AI) is always going to be the first player
+
+3. The computer rolls two dices and draws two random numbers between 1 to 6
+
+4. Human player first chooses a number between 1 to 6 from the given dice images and then rolls a dice and draws a random number
+
+5. Using logic “modulo by 6” to total number, the DiceGameApp calculates the results for each party
+
+6. The player who rolls a larger number (after applying “modulo by 6”) to the total number, WINS.
+
+7. Game can be replayed using "reset" option
+
