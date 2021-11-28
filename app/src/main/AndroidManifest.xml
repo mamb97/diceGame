@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
-            android:name=".Help"
+            android:name=".HelpActivity"
             android:exported="false" />
         <activity
             android:name=".DiceActivity"

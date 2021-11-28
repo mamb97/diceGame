@@ -36,6 +36,7 @@
     <string name="ai_dice_turn_label">AI:</string>
     <string name="human_turn_label">Human:</string>
     <string name="aaa">Image Content Description</string>
+    <string name="help_button_text">Help</string>
     <string-array name="dice_values">
         <item>1</item>
         <item>2</item>

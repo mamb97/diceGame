@@ -1,14 +1,14 @@
 package com.example.dicegame;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-public class Help extends AppCompatActivity {
+public class HelpActivity extends AppCompatActivity {
 
     TextView HelpText;
 
@@ -17,15 +17,16 @@ public class Help extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
 
-        HelpText = (TextView) findViewById(R.id.helpText);
+        HelpText = findViewById(R.id.helpText);
 
         String string = "";
         try {
             InputStream inputStream = getAssets().open("HELP.txt");
             int size = inputStream.available();
             byte[] buffer = new byte[size];
-            inputStream.read(buffer);
-            string = new String(buffer);
+            if (inputStream.read(buffer) != -1){
+                string = new String(buffer);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
